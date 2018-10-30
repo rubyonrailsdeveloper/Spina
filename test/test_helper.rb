@@ -1,5 +1,5 @@
 require 'simplecov'
-SimpleCov.start 'rails'
+SimpleCov.start
 
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
@@ -7,16 +7,15 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require "rails/test_help"
 require "minitest/reporters"
-require 'factory_bot'
-require 'mocha/minitest'
+require 'factory_girl'
 
 Minitest::Reporters.use! Minitest::Reporters::DefaultReporter.new
 
 class Minitest::Unit::TestCase
-  include FactoryBot::Syntax::Methods
+  include FactoryGirl::Syntax::Methods
 end
 
-FactoryBot.find_definitions
+FactoryGirl.find_definitions
 
 # Load fixtures from the engine
 # ActiveSupport::TestCase.fixture_path = File.expand_path("../fixtures", __FILE__)

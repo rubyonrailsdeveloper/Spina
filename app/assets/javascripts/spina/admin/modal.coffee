@@ -48,6 +48,7 @@ showModal = (element) ->
   modal.show()
 
   modal.find('input[type="file"][data-customfileinput]').customFileInput()
+  modal.find('.new_photo').uploadPhoto()
 
   $('body').addClass('overlay')
   return false

@@ -123,25 +123,9 @@
 
   trix-editor.text-input
     padding-left: 0
-    white-space: initial
 
   #{$all-text-inputs}
     height: 50px
-
-  a.media_picker
-    background: none
-    border: none
-    box-shadow: none
-    outline: none
-    padding-left: 0
-
-    .image
-      border-radius: 3px
-      display: inline-block
-      overflow: hidden
-
-      img
-        display: block
 
 .sidebar-form-images
   margin-top: 25px
@@ -156,22 +140,15 @@
   border: 1px solid #e5e5ea
   border-radius: 2px
   display: inline-block
-  height: 100px
   margin-bottom: 10px
   margin-right: 10px
-  overflow: hidden
   position: relative
   width: 100px
 
   > img
     border-radius: 2px
     display: block
-    left: 50%
-    max-height: 100%
-    max-width: 100%
-    position: absolute
-    top: 50%
-    transform: translateY(-50%) translateX(-50%)
+    width: 100%
 
   .sidebar-form-image-overlay
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, .5))
@@ -189,7 +166,6 @@
     opacity: 1
 
   &:first-child
-    height: 240px
     width: 320px
 
   &:nth-child(3n + 1)
@@ -341,23 +317,17 @@
 .input-group
   display: flex
 
-  div
-    #{$all-text-inputs}, .text-input, .select-dropdown
-      height: 100%
-
-  & > div, #{$all-text-inputs}, .text-input, .select-dropdown
+  #{$all-text-inputs}, .text-input, .select-dropdown
     flex: 1
 
     &:not(:first-child)
-      &, #{$all-text-inputs}, .text-input, .select-dropdown
-        border-bottom-left-radius: 0
-        border-top-left-radius: 0
+      border-bottom-left-radius: 0
+      border-top-left-radius: 0
 
     &:not(:last-child)
-      &, #{$all-text-inputs}, .text-input, .select-dropdown
-        border-bottom-right-radius: 0
-        border-top-right-radius: 0
-        border-right: none
+      border-bottom-right-radius: 0
+      border-top-right-radius: 0
+      border-right: none
 
 // Inputs
 
@@ -460,7 +430,7 @@ fieldset
   color: #999
 
 input.datepicker
-  background: url(asset-path('spina/datepicker.svg')) no-repeat center right
+  background: url(asset-path('spina/datepicker.png')) no-repeat center right
 
 // Switch
 
@@ -562,11 +532,7 @@ input.datepicker
   padding: 0
   position: relative
   transition: border .2s ease
-  white-space: nowrap
   @extend .icon, .icon-caret-down
-
-  .field_with_errors
-    display: inline-block
 
   label
     background: #f5f5f5
@@ -649,7 +615,7 @@ input.datepicker
       width: 1px
 
     ul:after
-      background: linear-gradient(#ddd, rgba(255, 255, 255, 0))
+      background: linear-gradient(bottom, rgba(255, 255, 255, 0), #ddd)
       bottom: -40px
       top: auto
 
@@ -744,14 +710,9 @@ input.datepicker
   line-height: 52px
 
   .customfile
-    background: rgba(0, 0, 0, .015)
-    border: 1px dashed rgba(0, 0, 0, .1)
-    border-radius: 10px
     cursor: pointer
     height: 100%
-    margin: 20px 0
     overflow: hidden
-    padding-left: 20px
     position: relative
     text-align: left
     width: 100%
@@ -772,12 +733,8 @@ input.datepicker
       @extend .icon, .icon-refresh:before
       display: none
       font-size: 36px
-      height: 50px
-      width: 36px
 
   .customfile.loading
-    padding: 7px 20px
-
     &:before
       display: none
 
@@ -806,34 +763,6 @@ input.datepicker
   .customfile-button
     display: none
 
-.document-select
-  ul
-    margin: -20px -20px 20px -20px
-
-  .item
-    border-top: 1px solid #efefef
-    cursor: pointer
-    line-height: 1
-    margin: 0
-    position: relative
-    width: 100%
-
-    label
-      display: block
-      font-size: 0.875rem
-      margin: 0
-      padding: 20px
-
-    input[type="checkbox"],
-    input[type="radio"]
-      left: 0
-      opacity: 0
-      position: absolute
-      top: 0
-
-      &:checked + label
-        background: #f5f5fa
-
 .media_picker
   background: #f9f9f9
   border: 1px solid #d5d5d5
@@ -852,8 +781,20 @@ input.datepicker
   &:hover .button
     background: tint(#efefef, 20%)
 
-  .button:active 
+  &:active .button
     background: shade(#efefef, 10%)
+
+  &:before
+    background: rgba(255, 255, 255, .5)
+    content: ""
+    height: 100%
+    left: 0
+    opacity: 0
+    position: absolute
+    text-align: center
+    top: 0
+    transition: opacity .2s ease
+    width: 100%
 
   .placeholder
     color: #666

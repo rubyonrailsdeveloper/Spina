@@ -1,20 +1,17 @@
 module Spina
   module Admin
     class PagesController < AdminController
+      before_action :set_breadcrumb
       before_action :set_tabs, only: [:new, :create, :edit, :update]
       before_action :set_locale
-      before_action :set_page, only: [:edit, :update, :destroy]
 
       def index
-        add_breadcrumb I18n.t('spina.website.pages'), spina.admin_pages_path
         redirect_to admin_pages_path unless current_admin_path.starts_with?('/pages')
-        @pages = Page.active.sorted.roots.regular_pages
+        @pages = Page.active.sorted.roots
       end
 
       def new
-        @resource = Resource.find_by(id: params[:resource_id])
-        @page = Page.new(resource: @resource, parent: @resource&.parent_page)
-        add_index_breadcrumb
+        @page = Page.new
         if current_theme.new_page_templates.any? { |template| template[0] == params[:view_template] }
           @page.view_template = params[:view_template]
         end
@@ -35,15 +32,16 @@ module Spina
         end
       end
 
-      def edit        
-        add_index_breadcrumb
+      def edit
+        @page = Page.find(params[:id])
         add_breadcrumb @page.title
         @page_parts = @page.view_template_page_parts(current_theme).map { |part| @page.part(part) }
         render layout: 'spina/admin/admin'
       end
 
       def update
-        I18n.locale = params[:locale] || I18n.default_locale        
+        I18n.locale = params[:locale] || I18n.default_locale
+        @page = Page.find(params[:id])
         respond_to do |format|
           if @page.update_attributes(page_params)
             add_breadcrumb @page.title
@@ -65,10 +63,11 @@ module Spina
           update_child_pages_position(parent_node)
           update_page_position(parent_node, parent_pos, nil)
         end
-        head :ok
+        render nothing: true
       end
 
-      def destroy        
+      def destroy
+        @page = Page.find(params[:id])
         @page.destroy
         redirect_to spina.admin_pages_url
       end
@@ -79,12 +78,8 @@ module Spina
         @locale = params[:locale] || I18n.default_locale
       end
 
-      def add_index_breadcrumb
-        if @page.resource.present?
-          add_breadcrumb @page.resource.label, spina.admin_resource_path(@page.resource)
-        else
-          add_breadcrumb I18n.t('spina.website.pages'), spina.admin_pages_path
-        end
+      def set_breadcrumb
+        add_breadcrumb I18n.t('spina.website.pages'), spina.admin_pages_path
       end
 
       def set_tabs
@@ -105,12 +100,9 @@ module Spina
       end
 
       def page_params
-        params.require(:page).permit!
+        params.require(:page).permit!.merge(locale: params[:locale] || I18n.default_locale)
       end
 
-      def set_page
-        @page = Page.find(params[:id])
-      end
     end
   end
 end

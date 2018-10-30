@@ -7,9 +7,5 @@ module Spina
 
     validates :name, :label, presence: true
     validates :name, uniqueness: true
-
-    def cache_key
-      super + "_" + Mobility.locale.to_s
-    end
   end
 end

@@ -2,18 +2,14 @@
 
 [Visit the website](http://www.spinacms.com)
 
-[![Build Status](https://travis-ci.com/SpinaCMS/Spina.svg?branch=master)](https://travis-ci.com/SpinaCMS/Spina)
-[![Code Climate](https://codeclimate.com/github/SpinaCMS/Spina/badges/gpa.svg)](https://codeclimate.com/github/SpinaCMS/Spina)
-[![Test Coverage](https://codeclimate.com/github/SpinaCMS/Spina/badges/coverage.svg)](https://codeclimate.com/github/SpinaCMS/Spina/coverage)
+[![CircleCI](https://img.shields.io/circleci/project/github/denkGroot/Spina.svg)](https://circleci.com/gh/denkGroot/Spina)
+[![Code Climate](https://codeclimate.com/github/denkGroot/Spina/badges/gpa.svg)](https://codeclimate.com/github/denkGroot/Spina)
+[![Test Coverage](https://codeclimate.com/github/denkGroot/Spina/badges/coverage.svg)](https://codeclimate.com/github/denkGroot/Spina/coverage)
 [![Slack](https://slack-spinacms.herokuapp.com/badge.svg)](https://slack-spinacms.herokuapp.com)
-
-[![View performance data on Skylight](https://badges.skylight.io/status/0kzPHGlfswAw.svg)](https://oss.skylight.io/app/applications/0kzPHGlfswAw)
-[![View performance data on Skylight](https://badges.skylight.io/problem/0kzPHGlfswAw.svg)](https://oss.skylight.io/app/applications/0kzPHGlfswAw)
-[![View performance data on Skylight](https://badges.skylight.io/typical/0kzPHGlfswAw.svg)](https://oss.skylight.io/app/applications/0kzPHGlfswAw)
 
 # Getting Started
 
-Spina is a CMS for Rails 5.2. This guide is designed for developers with experience using Ruby on Rails.
+Spina is a CMS for Rails 5.1. This guide is designed for developers with experience using Ruby on Rails.
 
 To start using Spina CMS add the following line to your Gemfile:
 
@@ -21,40 +17,13 @@ To start using Spina CMS add the following line to your Gemfile:
 gem 'spina'
 ```
 
-First run the installer to get started:
+Make sure you run the installer to get started.
 
     rails g spina:install
 
 The installer will help you setup your first user.
 
 Then start `rails s` and access Spina at `/admin`.
-
-## Upgrading from 0.X to 1.0
-
-Because upgrading 1.0 means switching to ActiveStorage, we've created a complementary gem to make the upgrade process easier.
-
-`gem 'spina-upgrade', git: 'https://github.com/SpinaCMS/spina-upgrade'`
-
-After installing this gem, make sure you setup ActiveStorage. Then you can run the upgrade command to migrate all `Spina::Photo` records to `Spina::Image`. Images will be reuploaded using ActiveStorage, so depending on your storage this could take a while.
-
-`rails g spina:upgrade`
-
-Replace `Spina::Photo` with `Spina::Image` where necessary and make sure that you edit every `image_tag`.
-
-## Upgrading from 0.12 to 0.12.1
-
-First run the new migrations
-
-    rails spina:install:migrations
-    rails db:migrate
-
-This will create a table for the `Spina::Resource` model.
-
-Globalize is replaced by Mobility. Switching to Mobility is fairly straightfoward.
-- Run `rails g spina:install` to add the `mobility.rb` initializer.
-- Replace instances of `Globalize` with `Mobility` in your own code
-
-This is the last release before Spina switches to Rails 5.2 and ActiveStorage.
 
 ## Upgrading from 0.11 to 0.12
 
@@ -113,8 +82,8 @@ A page in Spina has many Page parts. By default these page parts can be one of t
 
 - `Spina::Line`
 - `Spina::Text`
-- `Spina::Image`
-- `Spina::ImageCollection`
+- `Spina::Photo`
+- `Spina::PhotoCollection`
 - `Spina::Structure`
 - `Spina::Option`
 
@@ -255,39 +224,12 @@ You can define custom pages for your theme that will be generated when bootstrap
 
 Check our [Contributing Guide](CONTRIBUTING.md) for instructions on how to help the project.
 
-<a href="https://github.com/SpinaCMS/Spina/graphs/contributors"><img src="https://opencollective.com/Spina/contributors.svg?width=890" /></a>
-
-
-# Backers
-
-Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/Spina#backer)]
-
-<a href="https://opencollective.com/Spina#backers" target="_blank"><img src="https://opencollective.com/Spina/backers.svg?width=890"></a>
-
-
-# Sponsors
-
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/Spina#sponsor)]
-
-<a href="https://opencollective.com/Spina/sponsor/0/website" target="_blank"><img src="https://opencollective.com/Spina/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/Spina/sponsor/1/website" target="_blank"><img src="https://opencollective.com/Spina/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/Spina/sponsor/2/website" target="_blank"><img src="https://opencollective.com/Spina/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/Spina/sponsor/3/website" target="_blank"><img src="https://opencollective.com/Spina/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/Spina/sponsor/4/website" target="_blank"><img src="https://opencollective.com/Spina/sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/Spina/sponsor/5/website" target="_blank"><img src="https://opencollective.com/Spina/sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/Spina/sponsor/6/website" target="_blank"><img src="https://opencollective.com/Spina/sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/Spina/sponsor/7/website" target="_blank"><img src="https://opencollective.com/Spina/sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/Spina/sponsor/8/website" target="_blank"><img src="https://opencollective.com/Spina/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/Spina/sponsor/9/website" target="_blank"><img src="https://opencollective.com/Spina/sponsor/9/avatar.svg"></a>
-
-
-
 # License
 
 Spina is released under the [MIT license](LICENSE.md).
 
 # Credits
 
-Some parts of Spina are heavily influenced by the wonderful Refinery CMS. Credits to [the Refinery  team](https://www.refinerycms.com/).
+Some parts of Spina are heavily influenced by the wonderful Refinery CMS. Credits to [the Refinery  team](http://www.refinerycms.com/about).
 
 All icons in Spina were made by Brent Jackson [Geomicons](http://jxnblk.com/geomicons-wired/).

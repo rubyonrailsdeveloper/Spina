@@ -1,11 +1,11 @@
-FactoryBot.define do
+FactoryGirl.define do
   factory :page, class: Spina::Page do
     draft false
     active true
 
     factory :homepage do
       name 'homepage'
-      title 'Homepage'
+      title 'Hompage'
       deletable false
     end
 

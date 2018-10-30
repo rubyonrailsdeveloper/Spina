@@ -3,7 +3,6 @@ module Spina
     class UsersController < AdminController
       before_action :set_breadcrumbs
       before_action :authorize_admin, except: [:index]
-      before_action :set_user, only: [:edit, :update, :destroy]
 
       def index
         @users = User.all
@@ -25,11 +24,13 @@ module Spina
         end
       end
 
-      def edit        
+      def edit
+        @user = User.find(params[:id])
         add_breadcrumb "#{@user}"
       end
 
-      def update        
+      def update
+        @user = User.find(params[:id])
         add_breadcrumb "#{@user}"
         if @user.update_attributes(user_params)
           redirect_to spina.admin_users_url
@@ -39,7 +40,8 @@ module Spina
         end
       end
 
-      def destroy        
+      def destroy
+        @user = User.find(params[:id])
         @user.destroy unless @user == current_spina_user
         redirect_to admin_users_url
       end
@@ -54,9 +56,6 @@ module Spina
           params.require(:user).permit(:admin, :email, :name, :password_digest, :password, :password_confirmation, :last_logged_in)
         end
 
-        def set_user
-          @user = User.find(params[:id])
-        end
     end
   end
 end

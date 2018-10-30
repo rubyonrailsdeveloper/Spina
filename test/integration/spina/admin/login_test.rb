@@ -5,8 +5,8 @@ module Spina
     class LoginTest < ActionDispatch::IntegrationTest
       setup do
         @routes = Engine.routes
-        FactoryBot.create :account
-        @user = FactoryBot.create :user
+        FactoryGirl.create :account
+        @user = FactoryGirl.create :user
       end
 
       test "login and browse pages" do
