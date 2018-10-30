@@ -15,9 +15,9 @@ Spina::Engine.routes.draw do
     resources :users
 
     # Sessions
-    resources :sessions
-    get "login" => "sessions#new"
-    get "logout" => "sessions#destroy"
+    # resources :sessions
+    # get "login" => "sessions#new"
+    # get "logout" => "sessions#destroy"
 
     # Passwords
     resources :password_resets
