@@ -2,7 +2,7 @@ module Spina
   module Admin
     class SessionsController < AdminController
 
-      layout "spina/login"
+      layout "spina/admin/pages"
 
       skip_before_action :authorize_spina_user
 
